@@ -42,11 +42,6 @@ export default function Hero() {
           initial="hidden"
           animate="visible"
         >
-          <motion.span className="hero__badge" variants={fadeUp}>
-            <span className="hero__badge-dot" aria-hidden="true" />
-            {personalInfo.location}
-          </motion.span>
-
           <motion.h1 className="hero__title" variants={fadeUp}>
             Hi, I&apos;m{' '}
             <span className="hero__name">{personalInfo.name}</span>

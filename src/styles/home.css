@@ -325,7 +325,7 @@
   }
 }
 
-@media (max-height: 680px) {
+@media (max-height: 680px) and (min-width: 769px) {
   .hero--unified .hero__shell {
     gap: 0.25rem;
     transform: scale(0.96);
@@ -337,7 +337,7 @@
   }
 }
 
-@media (max-height: 580px) {
+@media (max-height: 580px) and (min-width: 769px) {
   .hero--unified .hero__shell {
     transform: scale(0.88);
   }

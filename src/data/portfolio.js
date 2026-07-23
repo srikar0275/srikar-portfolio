@@ -1,9 +1,8 @@
 export const personalInfo = {
   name: 'Srikar',
-  title: 'Software Developer',
+  title: 'Web Developer',
   tagline: 'I build clean, performant web experiences.',
   email: 'srikar0275@gmail.com',
-  location: 'Available for remote work',
   photo: '/profile.jpg',
   social: {
     github: 'https://github.com/srikar0275',
@@ -17,7 +16,7 @@ export const personalInfo = {
 
 export const about = {
   paragraphs: [
-    'I\'m Srikar, a software developer who cares about building products that feel simple to use and solid under the hood. I like taking ideas from rough concept to something people can actually open in the browser and enjoy.',
+    'I\'m Srikar, a web developer who cares about building products that feel simple to use and solid under the hood. I like taking ideas from rough concept to something people can actually open in the browser and enjoy.',
     'Most of my work lives in the web — frontends that are clean and responsive, backends that stay reliable, and the small details in between that make an app feel finished. I learn fast, iterate often, and pay attention to how something feels, not just how it works.',
     'Recently I\'ve been building tools like VoiceForge for voice and video workflows, and Ritora Technologies for project and task management. Those projects reflect what I enjoy: practical software that saves time and helps people get things done.',
     'When I\'m not at the keyboard, I like exploring new tech, improving my craft through side projects, and pushing myself to build things a little better than the last time.',
