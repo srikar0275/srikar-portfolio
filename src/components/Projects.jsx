@@ -1,6 +1,11 @@
 import { useEffect, useRef } from 'react'
 import { projects } from '../data/portfolio'
 
+function getLiveHref(liveUrl) {
+  if (/^https?:\/\//i.test(liveUrl)) return liveUrl
+  return `${import.meta.env.BASE_URL}${liveUrl.replace(/^\//, '')}`
+}
+
 function ProjectCard({ project, index }) {
   return (
     <article
@@ -23,7 +28,7 @@ function ProjectCard({ project, index }) {
         )}
         {project.liveUrl && (
           <a
-            href={`${import.meta.env.BASE_URL}${project.liveUrl.replace(/^\//, '')}`}
+            href={getLiveHref(project.liveUrl)}
             target="_blank"
             rel="noopener noreferrer"
             className="project-card__live"

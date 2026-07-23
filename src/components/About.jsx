@@ -14,15 +14,6 @@ export default function About() {
             <p key={i}>{paragraph}</p>
           ))}
         </div>
-
-        <div className="about__highlights">
-          {about.highlights.map((item) => (
-            <div key={item.label} className="about__highlight">
-              <strong>{item.value}</strong>
-              <span>{item.label}</span>
-            </div>
-          ))}
-        </div>
       </div>
     </section>
   )

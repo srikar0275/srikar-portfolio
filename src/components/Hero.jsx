@@ -1,48 +1,84 @@
-import { Link } from 'react-router-dom'
-import { personalInfo, skills } from '../data/portfolio'
+import { motion } from 'framer-motion'
+import { personalInfo } from '../data/portfolio'
+import HeroBackground from './home/HeroBackground'
+import HeroSideDecor from './home/HeroSideDecor'
+import ProfileCard3D from './home/ProfileCard3D'
+import MotionButton from './home/MotionButton'
+import SiteNav from './SiteNav'
+import SocialLinks from './SocialLinks'
+import '../styles/home.css'
 
-const heroSkills = skills.flatMap((g) => g.items).slice(0, 8)
+const ease = [0.22, 1, 0.36, 1]
+
+const container = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.06, delayChildren: 0.05 },
+  },
+}
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.4, ease },
+  },
+}
 
 export default function Hero() {
   return (
-    <section id="home" className="hero">
-      <div className="hero__inner">
-        <div className="hero__text">
-          <span className="hero__badge hero__enter hero__enter--1">{personalInfo.location}</span>
-          <h1 className="hero__title hero__enter hero__enter--2">
-            Hi, I&apos;m <em>{personalInfo.name}</em>
-          </h1>
-          <p className="hero__role hero__enter hero__enter--3">{personalInfo.title}</p>
-          <p className="hero__tagline hero__enter hero__enter--4">{personalInfo.tagline}</p>
-          <div className="hero__actions hero__enter hero__enter--5">
-            <Link to="/projects" className="btn btn--primary">See my work</Link>
-            <a href={`mailto:${personalInfo.email}`} className="btn btn--ghost">Say hello</a>
-          </div>
-          <div className="hero__skills hero__enter hero__enter--6">
-            {heroSkills.map((skill) => (
-              <span key={skill} className="hero__skill-tag">{skill}</span>
-            ))}
-          </div>
-        </div>
+    <section id="home" className="hero hero--premium hero--unified">
+      <HeroBackground />
+      <HeroSideDecor />
 
-        <div className="hero__visual hero__enter hero__enter--4">
-          <div className="hero__card">
-            <div className="hero__card-inner">
-              {personalInfo.photo ? (
-                <img
-                  src={`${import.meta.env.BASE_URL}${personalInfo.photo.replace(/^\//, '')}`}
-                  alt={`${personalInfo.name} profile`}
-                  className="hero__photo"
-                />
-              ) : (
-                <span className="hero__initial">{personalInfo.name.charAt(0)}</span>
-              )}
-              <p>{personalInfo.title}</p>
-            </div>
-          </div>
-          <div className="hero__shape hero__shape--1" />
-          <div className="hero__shape hero__shape--2" />
-        </div>
+      <div className="hero__shell">
+        <ProfileCard3D />
+
+        <motion.div
+          className="hero__text"
+          variants={container}
+          initial="hidden"
+          animate="visible"
+        >
+          <motion.span className="hero__badge" variants={fadeUp}>
+            <span className="hero__badge-dot" aria-hidden="true" />
+            {personalInfo.location}
+          </motion.span>
+
+          <motion.h1 className="hero__title" variants={fadeUp}>
+            Hi, I&apos;m{' '}
+            <span className="hero__name">{personalInfo.name}</span>
+          </motion.h1>
+
+          <motion.p className="hero__role" variants={fadeUp}>
+            {personalInfo.title}
+          </motion.p>
+
+          <motion.p className="hero__tagline" variants={fadeUp}>
+            {personalInfo.tagline}
+          </motion.p>
+
+          <motion.div className="hero__actions" variants={fadeUp}>
+            <MotionButton to="/projects" variant="primary">
+              See my work
+            </MotionButton>
+            <MotionButton href={`mailto:${personalInfo.email}`} variant="ghost">
+              Say hello
+            </MotionButton>
+          </motion.div>
+        </motion.div>
+
+        <motion.div
+          className="hero__chrome"
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.35, ease }}
+        >
+          <SiteNav className="site-nav--hero" />
+          <SocialLinks className="social-links--hero" />
+        </motion.div>
       </div>
     </section>
   )

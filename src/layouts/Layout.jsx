@@ -1,7 +1,6 @@
 import { Outlet, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
+import PageChrome from '../components/PageChrome'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -14,14 +13,23 @@ function ScrollToTop() {
 }
 
 export default function Layout() {
+  const { pathname } = useLocation()
+  const isHome = pathname === '/'
+
+  useEffect(() => {
+    if (!isHome) return undefined
+
+    document.body.classList.add('body--home')
+    return () => document.body.classList.remove('body--home')
+  }, [isHome])
+
   return (
-    <div className="app">
+    <div className={`app ${isHome ? 'app--home' : ''}`}>
       <ScrollToTop />
-      <Navbar />
       <div className="app__main">
-        <div className="page-content">
+        <div className={isHome ? 'home-page' : 'page-content'}>
           <Outlet />
-          <Footer />
+          {!isHome && <PageChrome />}
         </div>
       </div>
     </div>
